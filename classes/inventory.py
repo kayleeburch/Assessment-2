@@ -14,10 +14,8 @@ class Inventory():
             csv_reader = csv.reader(f, delimiter='\n')
             next(f)
             for row in csv_reader:
-                print(row)
                 items = row[0].split(',')
                 inventory_info = {'video_id': items[0], 'title': items[1], 'rating':items[2], 'release_date':items[3], 'copies': items[4]}
-                print(items[0], items[4])
                 video_objects.append(Inventory(**inventory_info))
         f.close()
         return video_objects
