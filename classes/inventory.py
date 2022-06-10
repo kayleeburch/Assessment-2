@@ -1,4 +1,5 @@
 import csv
+
 class Inventory():
     def __init__(self, video_id, title, rating, release_date, copies):
         self.video_id = video_id
@@ -9,7 +10,7 @@ class Inventory():
     
     def total_inventory():
         video_objects = []
-        with open('data/store_inventory.csv', newline='') as f:
+        with open('data/inventory.csv', newline='') as f:
             csv_reader = csv.reader(f, delimiter='\n')
             next(f)
             for row in csv_reader:

@@ -1,5 +1,5 @@
 from classes.inventory import Inventory
-from classes.customer import Customer
+
 class Video_Store():
     def __init__(self, name):
         self.name = name
