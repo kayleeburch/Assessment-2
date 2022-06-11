@@ -21,7 +21,7 @@ class Inventory():
         f.close()
         return video_objects
     
-    def avilable_inventory(self, title):
+    def available_inventory(title):
         titles = []
         rating = ''
         number_of_copies = 0
@@ -41,4 +41,5 @@ class Inventory():
                 return rating
         else:
             print("Title does not exist in inventory, please try again.")
+            return False
             

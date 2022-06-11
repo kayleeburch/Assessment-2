@@ -1,4 +1,5 @@
 import csv
+from classes.inventory import Inventory
 
 class Customer():
     def __init__(self, customer_id, account_type, f_name, l_name, current_rentals):
@@ -26,28 +27,44 @@ class Customer():
             if rental_number == 1:
                 return "Max one rental at a time. Please return rental first." #can I put name of rented movie here?
             elif rental_number == 0:
-                pass
-                #check if avilable dvds for title of movie (Inventory)
+                if Inventory.available_inventory(title) != False: #check if avilable dvds for title of movie (Inventory)
+                    can_rent = True
+                    return can_rent
+                else:
+                    return can_rent
         elif type_of_account == 'px':
             if rental_number == 3:
                 return "Max one rental at a time. Please return rental first."
             elif rental_number < 3:
-                pass
-                #check if avilable dvds for title of movie (Inventory)
+                if Inventory.available_inventory(title) != False:
+                    can_rent = True
+                    return can_rent
+                else:
+                    return can_rent
         elif type_of_account == 'sf':
             if rental_number == 1:
                 return "Max one rental at a time. Please return rental first."
             elif rental_number == 0:
-                #check rating is not r on title (Inventory)
-                #check if avilable dvds for title of movie (Inventory)
-                pass
+                if Inventory.available_inventory(title) != False and Inventory.available_inventory(title) == 'R':
+                    print("Unable to rent R rated movies with current account type")
+                    return can_rent
+                elif Inventory.available_inventory(title) == False:
+                    return can_rent
+                else:
+                    can_rent = True
+                    return can_rent
         elif type_of_account == 'pf':
             if rental_number == 3:
                 return "Max one rental at a time. Please return rental first."
             elif rental_number < 3:
-                #check rating is not r on title (Inventory)
-                #check if avilable dvds for title of movie (Inventory)
-                pass
+                if Inventory.available_inventory(title) != False and Inventory.available_inventory(title) == 'R':
+                    print("Unable to rent R rated movies with current account type")
+                    return can_rent
+                elif Inventory.available_inventory(title) == False:
+                    return can_rent
+                else:
+                    can_rent = True
+                    return can_rent
             
         
         
