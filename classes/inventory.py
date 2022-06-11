@@ -7,6 +7,7 @@ class Inventory():
         self.rating = rating
         self.release_date = release_date
         self.copies = copies
+        
     
     def total_inventory():
         video_objects = []
@@ -19,3 +20,25 @@ class Inventory():
                 video_objects.append(Inventory(**inventory_info))
         f.close()
         return video_objects
+    
+    def avilable_inventory(self, title):
+        titles = []
+        rating = ''
+        number_of_copies = 0
+        enough_copies = True
+        inventory_objects = Inventory.total_inventory()
+        for movie in inventory_objects:
+            titles.append(movie.title)
+        if title in titles:
+            for movie in inventory_objects:
+                if movie.title == title:
+                    rating = movie.rating
+                    number_of_copies = movie.copies
+            if number_of_copies == '0':
+                enough_copies = False
+                return enough_copies
+            else:
+                return rating
+        else:
+            print("Title does not exist in inventory, please try again.")
+            
