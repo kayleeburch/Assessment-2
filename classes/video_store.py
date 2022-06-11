@@ -28,12 +28,15 @@ class Video_Store():
   
         
     def renting_video(self, identifier, title):
-        result = []
         type_of_account = ''
         curr_rentals = 0
-        for customer in self.customers:
-            result.append(customer.customer_id)
-        if identifier in result:
+        if Customer.id_exists(identifier) == False:
+            print("ID does not exists in database.")
+            return
+        elif Inventory.title_exists(title) == False:
+            print('Title does not exists in database.')
+            return
+        else:
             for customer in self.customers:
                 if customer.customer_id == identifier:
                     type_of_account = customer.account_type
@@ -49,5 +52,27 @@ class Video_Store():
                             customer.current_rentals = customer.current_rentals + f"/{title}"
                     else:
                         return checking_rental_ability
-        else:
+        
+            
+    def returning_video(self, identifier, title):
+        if Customer.id_exists(identifier) == False:
             print("ID does not exists in database.")
+            return
+        elif Inventory.title_exists(title) == False:
+            print('Title does not exists in database.')
+            return
+        else:
+            for customer in self.customers:
+                if customer.customer_id == identifier:
+                    customer_arr = customer.current_rentals.split('/')
+                    # print(customer.current_rentals, customer_arr)
+                    if title in customer_arr:
+                        customer_arr.remove(title)
+                        new_str = '/'.join(customer_arr)
+                        customer.current_rentals = new_str
+                        Inventory.updating_inventory(title)
+                    else:
+                        print('Customer does not have this movie rented.')
+                        return
+                        
+        

@@ -21,6 +21,16 @@ class Customer():
         f.close()
         return customer_objects
     
+    def id_exists(identifier):
+        result = []
+        customer_objects = Customer.customer_info()
+        for customer in customer_objects:
+            result.append(customer.customer_id)
+        if identifier in result:
+            return True
+        else:
+            return False
+    
     def able_to_rent(type_of_account, rental_number, title):
         can_rent = False
         if type_of_account == 'sx':

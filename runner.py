@@ -1,10 +1,9 @@
 from classes.video_store import Video_Store
+from classes.inventory import Inventory
      
 
 def main():
     block_buster = Video_Store('Block Buster')
-    # x = Inventory(5,'The Prestige','PG-13',2006,2)
-    # print(x.avilable_inventory("Toy Stor"))
     while True:
         selection = input("\n== Welcome to Code Platoon Video ==\n1. View store video inventory\n2. View customer rented videos {by id}\n3. Add new customer\n4. Rent video\n5. Return video\n6. Exit\n")
         if selection == '1':
@@ -23,7 +22,9 @@ def main():
             movie_title_input = input('Please enter movie title: ')
             block_buster.renting_video(search_id_4, movie_title_input)
         elif selection == '5':
-            return
+            search_id_5 = input('Please enter customer ID: ')
+            title_input_5 = input('Please enter the title of movie being returned: ')
+            block_buster.returning_video(search_id_5, title_input_5)
         elif selection == '6':
             return
         else:

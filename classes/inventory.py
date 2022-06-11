@@ -1,4 +1,5 @@
 import csv
+from re import T
 
 class Inventory():
     def __init__(self, video_id, title, rating, release_date, copies):
@@ -41,5 +42,22 @@ class Inventory():
                 return rating
         else:
             print("Title does not exist in inventory, please try again.")
-            return False
+            return
             
+    def title_exists(t):
+        result = []
+        inventory_objects = Inventory.total_inventory()
+        for movie in inventory_objects:
+            result.append(movie.title)   
+        if t in result:
+            return True
+        else:
+            return False
+        
+    def updating_inventory(t):
+        inventory_objects = Inventory.total_inventory()
+        for movie in inventory_objects:
+            if movie.title == t:
+                adding_copy = int(movie.copies) + 1
+                movie.copies = str(adding_copy)
+        
