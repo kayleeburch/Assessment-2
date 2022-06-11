@@ -21,3 +21,24 @@ class Video_Store():
                     print(f"== {customer.f_name} {customer.l_name} ==\n{customer.current_rentals.split('/')}")
         else:
             print("ID does not exists in database.")
+    
+    def add_customer(self, customer_id, account_type, f_name, l_name, current_rentals = ''):
+        self.customers.append(Customer(customer_id, account_type, f_name, l_name, current_rentals))
+        print(self.customers)
+  
+        
+    def renting_video(self, identifier, title):
+        result = []
+        type_of_account = ''
+        curr_rentals = 0
+        for customer in self.customers:
+            result.append(customer.customer_id)
+        if identifier in result:
+            for customer in self.customers:
+                if customer.customer_id == identifier:
+                    type_of_account = customer.account_type
+                    curr_rentals = len(customer.current_rentals.split('/'))
+            print(type_of_account) 
+            print(curr_rentals)      
+        else:
+            print("ID does not exists in database.")
