@@ -25,7 +25,8 @@ class Customer():
         can_rent = False
         if type_of_account == 'sx':
             if rental_number == 1:
-                return "Max one rental at a time. Please return rental first." #can I put name of rented movie here?
+                print("Max one rental at a time. Please return rental first.") #can I put name of rented movie here?
+                return can_rent
             elif rental_number == 0:
                 if Inventory.available_inventory(title) != False: #check if avilable dvds for title of movie (Inventory)
                     can_rent = True
@@ -34,7 +35,8 @@ class Customer():
                     return can_rent
         elif type_of_account == 'px':
             if rental_number == 3:
-                return "Max one rental at a time. Please return rental first."
+                print("Max 3 rentals at a time. Please return rental first.")
+                return can_rent
             elif rental_number < 3:
                 if Inventory.available_inventory(title) != False:
                     can_rent = True
@@ -43,10 +45,11 @@ class Customer():
                     return can_rent
         elif type_of_account == 'sf':
             if rental_number == 1:
-                return "Max one rental at a time. Please return rental first."
+                print("Max one rental at a time. Please return rental first.")
+                return can_rent
             elif rental_number == 0:
                 if Inventory.available_inventory(title) != False and Inventory.available_inventory(title) == 'R':
-                    print("Unable to rent R rated movies with current account type")
+                    print("Unable to rent R rated movies with current account type.")
                     return can_rent
                 elif Inventory.available_inventory(title) == False:
                     return can_rent
@@ -55,10 +58,11 @@ class Customer():
                     return can_rent
         elif type_of_account == 'pf':
             if rental_number == 3:
-                return "Max one rental at a time. Please return rental first."
+                print("Max one rental at a time. Please return rental first.")
+                return can_rent
             elif rental_number < 3:
                 if Inventory.available_inventory(title) != False and Inventory.available_inventory(title) == 'R':
-                    print("Unable to rent R rated movies with current account type")
+                    print("Unable to rent R rated movies with current account type.")
                     return can_rent
                 elif Inventory.available_inventory(title) == False:
                     return can_rent
