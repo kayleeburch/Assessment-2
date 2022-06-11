@@ -38,7 +38,6 @@ class Video_Store():
                 if customer.customer_id == identifier:
                     type_of_account = customer.account_type
                     curr_rentals = len(customer.current_rentals.split('/'))
-            print(type_of_account) 
-            print(curr_rentals)      
+            Customer.able_to_rent(type_of_account, curr_rentals, title) 
         else:
             print("ID does not exists in database.")

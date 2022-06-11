@@ -20,5 +20,35 @@ class Customer():
         f.close()
         return customer_objects
     
+    def able_to_rent(type_of_account, rental_number, title):
+        can_rent = False
+        if type_of_account == 'sx':
+            if rental_number == 1:
+                return "Max one rental at a time. Please return rental first." #can I put name of rented movie here?
+            elif rental_number == 0:
+                pass
+                #check if avilable dvds for title of movie (Inventory)
+        elif type_of_account == 'px':
+            if rental_number == 3:
+                return "Max one rental at a time. Please return rental first."
+            elif rental_number < 3:
+                pass
+                #check if avilable dvds for title of movie (Inventory)
+        elif type_of_account == 'sf':
+            if rental_number == 1:
+                return "Max one rental at a time. Please return rental first."
+            elif rental_number == 0:
+                #check rating is not r on title (Inventory)
+                #check if avilable dvds for title of movie (Inventory)
+                pass
+        elif type_of_account == 'pf':
+            if rental_number == 3:
+                return "Max one rental at a time. Please return rental first."
+            elif rental_number < 3:
+                #check rating is not r on title (Inventory)
+                #check if avilable dvds for title of movie (Inventory)
+                pass
+            
+        
         
              
