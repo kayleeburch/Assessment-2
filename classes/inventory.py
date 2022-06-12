@@ -54,10 +54,5 @@ class Inventory():
         else:
             return False
         
-    def updating_inventory(t):
-        inventory_objects = Inventory.total_inventory()
-        for movie in inventory_objects:
-            if movie.title == t:
-                adding_copy = int(movie.copies) + 1
-                movie.copies = str(adding_copy)
+   
         

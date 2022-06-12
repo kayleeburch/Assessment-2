@@ -21,15 +21,6 @@ class Customer():
         f.close()
         return customer_objects
     
-    def id_exists(identifier):
-        result = []
-        customer_objects = Customer.customer_info()
-        for customer in customer_objects:
-            result.append(customer.customer_id)
-        if identifier in result:
-            return True
-        else:
-            return False
     
     def able_to_rent(type_of_account, rental_number, title):
         can_rent = False
@@ -42,6 +33,7 @@ class Customer():
                     can_rent = True
                     return can_rent
                 else:
+                    print('Not enough copies available in inventory.')
                     return can_rent
         elif type_of_account == 'px':
             if rental_number == 3:
@@ -52,6 +44,7 @@ class Customer():
                     can_rent = True
                     return can_rent
                 else:
+                    print('Not enough copies available in inventory.')
                     return can_rent
         elif type_of_account == 'sf':
             if rental_number == 1:
@@ -62,6 +55,7 @@ class Customer():
                     print("Unable to rent R rated movies with current account type.")
                     return can_rent
                 elif Inventory.available_inventory(title) == False:
+                    print('Not enough copies available in inventory.')
                     return can_rent
                 else:
                     can_rent = True
@@ -75,6 +69,7 @@ class Customer():
                     print("Unable to rent R rated movies with current account type.")
                     return can_rent
                 elif Inventory.available_inventory(title) == False:
+                    print('Not enough copies available in inventory.')
                     return can_rent
                 else:
                     can_rent = True
