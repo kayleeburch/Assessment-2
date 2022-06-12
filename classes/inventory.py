@@ -10,7 +10,7 @@ class Inventory():
         self.copies = copies
         
     
-    def total_inventory():
+    def total_inventory(): #returns inventory objects in list from csv file
         video_objects = []
         with open('data/inventory.csv', newline='') as f:
             csv_reader = csv.reader(f, delimiter='\n')
@@ -22,32 +22,29 @@ class Inventory():
         f.close()
         return video_objects
     
-    def available_inventory(title):
-        titles = []
+    def available_inventory(title, objects): #is called to check inventory copy amount
         rating = ''
         number_of_copies = 0
         enough_copies = True
-        inventory_objects = Inventory.total_inventory()
-        for movie in inventory_objects:
-            titles.append(movie.title)
-        if title in titles:
+        inventory_objects = objects 
+        if Inventory.title_exists(title) != True: #checking to see if title exists
+            print("Title does not exist in inventory, please try again.")
+            return
+        else:
             for movie in inventory_objects:
                 if movie.title == title:
                     rating = movie.rating
                     number_of_copies = movie.copies
-            if number_of_copies == '0':
+            if number_of_copies == '0': #if number_of_copies == 0 return False, else return the rating of the movie with title passed in
                 enough_copies = False
                 return enough_copies
             else:
                 return rating
-        else:
-            print("Title does not exist in inventory, please try again.")
-            return
             
-    def title_exists(t):
+    def title_exists(t): #returns true of false if movie title
         result = []
-        inventory_objects = Inventory.total_inventory()
-        for movie in inventory_objects:
+        inventory_objects = Inventory.total_inventory() #calls the total_inventory() method in Inventory
+        for movie in inventory_objects: #appends the movie titles in inventory objects and tests to see if title passed as param (t), exists.
             result.append(movie.title)   
         if t in result:
             return True

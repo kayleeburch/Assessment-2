@@ -9,7 +9,7 @@ class Customer():
         self.l_name = l_name
         self.current_rentals = current_rentals
         
-    def customer_info():
+    def customer_info(): #returns customer objects in list from csv file
         customer_objects = []
         with open('data/customers.csv', newline='') as f:
             csv_reader = csv.reader(f, delimiter='\n')
@@ -22,57 +22,57 @@ class Customer():
         return customer_objects
     
     
-    def able_to_rent(type_of_account, rental_number, title):
-        can_rent = False
-        if type_of_account == 'sx':
+    def able_to_rent(type_of_account, rental_number, title, objects): #is called when renting video method called within Inventory
+        can_rent = False #sets boolean for if customer can rent or not
+        if type_of_account == 'sx': #checks 'sx' account and number of rentals and sets max to 1
             if rental_number == 1:
-                print("Max one rental at a time. Please return rental first.") #can I put name of rented movie here?
+                print("Max one rental at a time. Please return rental first.") 
                 return can_rent
             elif rental_number == 0:
-                if Inventory.available_inventory(title) != False: #check if avilable dvds for title of movie (Inventory)
-                    can_rent = True
+                if Inventory.available_inventory(title, objects) != False: #calls available_inventory method in Inventory to check available inventory, will return False if copies = 0
+                    can_rent = True #set can_rent to true and return 
                     return can_rent
                 else:
                     print('Not enough copies available in inventory.')
                     return can_rent
-        elif type_of_account == 'px':
+        elif type_of_account == 'px': #checks 'px' account and number of rentals and sets max to 3
             if rental_number == 3:
                 print("Max 3 rentals at a time. Please return rental first.")
                 return can_rent
             elif rental_number < 3:
-                if Inventory.available_inventory(title) != False:
+                if Inventory.available_inventory(title, objects) != False:
                     can_rent = True
                     return can_rent
                 else:
                     print('Not enough copies available in inventory.')
                     return can_rent
-        elif type_of_account == 'sf':
+        elif type_of_account == 'sf': #checks 'sf' account and sets number of rentals to 1
             if rental_number == 1:
                 print("Max one rental at a time. Please return rental first.")
                 return can_rent
             elif rental_number == 0:
-                if Inventory.available_inventory(title) != False and Inventory.available_inventory(title) == 'R':
+                if Inventory.available_inventory(title, objects) != False and Inventory.available_inventory(title, objects) == 'R': #checks if copies exist but movie is R rates
                     print("Unable to rent R rated movies with current account type.")
                     return can_rent
-                elif Inventory.available_inventory(title) == False:
+                elif Inventory.available_inventory(title, objects) == False: #checks if movie exists
                     print('Not enough copies available in inventory.')
                     return can_rent
                 else:
-                    can_rent = True
+                    can_rent = True #else return True
                     return can_rent
-        elif type_of_account == 'pf':
+        elif type_of_account == 'pf': #checks 'pf' account and sets number of rentals to 3
             if rental_number == 3:
                 print("Max one rental at a time. Please return rental first.")
                 return can_rent
             elif rental_number < 3:
-                if Inventory.available_inventory(title) != False and Inventory.available_inventory(title) == 'R':
+                if Inventory.available_inventory(title, objects) != False and Inventory.available_inventory(title, objects) == 'R': #checks if copies exist but movie is R rates
                     print("Unable to rent R rated movies with current account type.")
                     return can_rent
-                elif Inventory.available_inventory(title) == False:
+                elif Inventory.available_inventory(title, objects) == False: #checks if movie exists
                     print('Not enough copies available in inventory.')
                     return can_rent
                 else:
-                    can_rent = True
+                    can_rent = True #else return True
                     return can_rent
             
         
