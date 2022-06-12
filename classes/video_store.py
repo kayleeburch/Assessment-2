@@ -97,7 +97,6 @@ class Video_Store():
         for movie in self.inventory:
             if movie.title == t:
                 adding_copy = int(movie.copies) + amount
-                print(int(movie.copies), amount, adding_copy)
                 movie.copies = str(adding_copy)
                 
     
